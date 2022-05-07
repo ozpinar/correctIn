@@ -12,6 +12,9 @@ import { SideProfileComponent } from './components/side-profile/side-profile.com
 import { EntriesComponent } from './components/entries/entries.component';
 import { NewEntryComponent } from './components/new-entry/new-entry.component';
 import { SwitchComponent } from './components/navigation/switch/switch.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { SwitchComponent } from './components/navigation/switch/switch.component
     SideProfileComponent,
     EntriesComponent,
     NewEntryComponent,
-    SwitchComponent
+    SwitchComponent,
+    MessagesComponent,
+    ProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
