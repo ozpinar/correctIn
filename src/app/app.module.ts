@@ -10,6 +10,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { NavigationElementComponent } from './components/navigation/navigation-element/navigation-element.component';
 import { SideProfileComponent } from './components/side-profile/side-profile.component';
 import { EntriesComponent } from './components/entries/entries.component';
+import { NewEntryComponent } from './components/new-entry/new-entry.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EntriesComponent } from './components/entries/entries.component';
     NavigationComponent,
     NavigationElementComponent,
     SideProfileComponent,
-    EntriesComponent
+    EntriesComponent,
+    NewEntryComponent
   ],
   imports: [
     BrowserModule,
