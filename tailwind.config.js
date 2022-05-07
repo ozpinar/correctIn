@@ -14,7 +14,8 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         'primary': '#5C865D',
-        'secondary': '#92BC94'
+        'secondary': '#92BC94',
+        'tertiary': "#59344F"
       },
       screens: {
         xl: { max: "1279px" },
@@ -22,6 +23,9 @@ module.exports = {
         md: { max: "767px" },
         sm: { max: "639px" },
       },
+      backgroundImage: {
+        'pattern': 'url("/assets/background.svg")'
+      }
     },
   },
   plugins: [],
