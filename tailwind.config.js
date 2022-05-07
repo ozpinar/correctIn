@@ -25,6 +25,10 @@ module.exports = {
       },
       backgroundImage: {
         'pattern': 'url("/assets/background.svg")'
+      },
+      borderRadius: {
+        'left' : '9999px 0 0 9999px',
+        'right': '0 9999px 9999px 0'
       }
     },
   },

@@ -11,6 +11,7 @@ import { NavigationElementComponent } from './components/navigation/navigation-e
 import { SideProfileComponent } from './components/side-profile/side-profile.component';
 import { EntriesComponent } from './components/entries/entries.component';
 import { NewEntryComponent } from './components/new-entry/new-entry.component';
+import { SwitchComponent } from './components/navigation/switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewEntryComponent } from './components/new-entry/new-entry.component';
     NavigationElementComponent,
     SideProfileComponent,
     EntriesComponent,
-    NewEntryComponent
+    NewEntryComponent,
+    SwitchComponent
   ],
   imports: [
     BrowserModule,
