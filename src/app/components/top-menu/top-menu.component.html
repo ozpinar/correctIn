@@ -3,8 +3,28 @@
         <img src="/assets/logo.svg" width="72px" alt="">
         <span class="font-bold text-primary text-2xl">Correct<span class="text-secondary">In</span></span>
     </div>
-    <div class="flex items-center gap-5 mr-6">
-        <span class="text-primary text-lg">{{username}}</span>
-        <img class="border rounded-full border-primary" src="/assets/user.svg" width="36px" alt="">
+    <div class="relative inline-block text-left dropdown">
+        <span class="flex items-center rounded-md">
+            <button class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                <span class="text-primary text-lg">{{username}}</span>
+                <svg class="w-5 h-5 fill-secondary" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+            <img class="border rounded-full border-primary" src="/assets/user.svg" width="36px" alt="">
+        </span>
+        <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+            <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+            <div class="px-4 py-3">         
+                <p class="text-sm leading-5 text-tertiary">Signed in as</p>
+                <p class="text-sm font-bold leading-5 text-tertiary truncate">{{username}}</p>
+            </div>
+            <div class="py-1">
+                <a tabindex="0" routerLink="/home" class="text-primary text-md flex justify-between px-4 py-2  leading-5 text-left hover:bg-primary hover:text-white hover:bg-opacity-60 rounded-sm transition-colors cursor-pointer" role="menuitem">Home</a>
+                <a tabindex="1" routerLink="/messages" class="text-primary text-md flex justify-between px-4 py-2  leading-5 text-left hover:bg-primary hover:text-white hover:bg-opacity-60 rounded-sm transition-colors cursor-pointer" role="menuitem">Messages</a>
+                <a tabindex="2" routerLink="/profile" class="text-primary text-md flex justify-between px-4 py-2  leading-5 text-left hover:bg-primary hover:text-white hover:bg-opacity-60 rounded-sm transition-colors cursor-pointer" role="menuitem">Profile</a>
+                <a tabindex="3" routerLink="/settings" class="text-primary text-md flex justify-between px-4 py-2  leading-5 text-left hover:bg-primary hover:text-white hover:bg-opacity-60 rounded-sm transition-colors cursor-pointer" role="menuitem">Settings</a></div>
+            <div class="py-1">
+                <a tabindex="3" class="text-tertiary text-md flex justify-between px-4 py-2  leading-5 text-left hover:bg-tertiary hover:text-white hover:bg-opacity-60 rounded-sm transition-colors cursor-pointer" role="menuitem" >Sign out</a></div>
+            </div>
+        </div>
     </div>
 </nav>
