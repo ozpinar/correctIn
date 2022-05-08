@@ -15,6 +15,10 @@ import { SwitchComponent } from './components/navigation/switch/switch.component
 import { MessagesComponent } from './components/messages/messages.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ChatElementComponent } from './components/messages/chat-element/chat-element.component';
+import { ChatsComponent } from './components/messages/chats/chats.component';
+import { MessageComponent } from './components/messages/message/message.component';
+import { ChatScreenComponent } from './components/messages/chat-screen/chat-screen.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { SettingsComponent } from './components/settings/settings.component';
     SwitchComponent,
     MessagesComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    ChatElementComponent,
+    ChatsComponent,
+    MessageComponent,
+    ChatScreenComponent
   ],
   imports: [
     BrowserModule,
