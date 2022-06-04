@@ -28,7 +28,9 @@ module.exports = {
       },
       borderRadius: {
         'left' : '9999px 0 0 9999px',
-        'right': '0 9999px 9999px 0'
+        'right': '0 9999px 9999px 0',
+        'chat-received': '0 25px 25px 25px',
+        'chat-sent': '25px 0 25px 25px'
       }
     },
   },
