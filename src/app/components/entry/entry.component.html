@@ -1,7 +1,4 @@
-<div class="px-7 pb-7 pt-1 shadow-post rounded-lg">
-    <p class="flex items-center gap-1 mb-5 italic text-sm border-b text-tertiary">
-        <svg class="fill-tertiary" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path d="M21.855 10.303c.086.554.145 1.118.145 1.697 0 6.075-4.925 11-11 11s-11-4.925-11-11 4.925-11 11-11c2.348 0 4.518.741 6.304 1.993l-1.421 1.457c-1.408-.913-3.083-1.45-4.883-1.45-4.963 0-9 4.038-9 9s4.037 9 9 9c4.894 0 8.879-3.928 8.99-8.795l1.865-1.902zm-.951-8.136l-9.404 9.639-3.843-3.614-3.095 3.098 6.938 6.71 12.5-12.737-3.096-3.096z"/></svg>        Corrected by @berkozpinar
-    </p>
+<div class="px-7 py-5 shadow-post rounded-lg">
     <div class="flex justify-between">
         <div class="flex gap-4">
             <img src="/assets/user.svg" class="border rounded-full border-primary w-12 h-12">
@@ -38,38 +35,11 @@
             </div>
         </div>
     </div>
-    <div class="mt-6 border-b-2 pb-4" >
-        <span 
-            *ngFor="let word of text1Words" 
-            [class.line-through]="!wordIsInCorrected(word) || samePlaceIsChanged(word.id)"
-            class="transition-all
-                text-lg
-                text-center 
-                hover:bg-tertiary 
-                hover:bg-opacity-30
-                hover:cursor-pointer
-                hover:overflow-hidden"
-                >
-            {{word.word}}
-        </span>
-    </div>
-    <div class="pt-4">
-        <div class="bg-secondary border bg-opacity-30 border-primary rounded-lg p-2 mt-2 mb-4 font-light" >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, maxime!
-        </div>
-        <span 
-            *ngFor="let word of text2Words"
-            [class.bg-primary]="!wordIsInOriginal(word) || samePlaceIsChanged(word.id)"
-            [class.bg-opacity-30]="!wordIsInOriginal(word) || samePlaceIsChanged(word.id)"
-            class="transition-all
-                text-lg
-                text-center 
-                hover:bg-tertiary 
-                hover:bg-opacity-30
-                hover:cursor-pointer
-                hover:overflow-hidden"
-                >
-            {{word.word}}
-        </span>
+    <div class="mt-6 pb-4 flex flex-col items-start">
+        <span *ngIf="!isEditing" class="text-lg" >{{text}}</span>
+        <textarea ngClass="text-lg border border-primary rounded-lg p-2" [(ngModel)]="text" *ngIf="isEditing" class="w-full"></textarea>
+        <button (click)="toggleEditing()" class="self-end bg-primary py-2 px-4 mt-4 text-white rounded-full">
+            {{isEditing ? 'Submit' : 'Correct Now'}}
+        </button>
     </div>
 </div>

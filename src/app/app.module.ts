@@ -21,6 +21,8 @@ import { MessageComponent } from './components/messages/message/message.componen
 import { ChatScreenComponent } from './components/messages/chat-screen/chat-screen.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { EntryComponent } from './components/entry/entry.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,11 +44,13 @@ import { RegisterComponent } from './components/register/register.component';
     MessageComponent,
     ChatScreenComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
