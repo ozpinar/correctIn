@@ -19,6 +19,8 @@ import { ChatElementComponent } from './components/messages/chat-element/chat-el
 import { ChatsComponent } from './components/messages/chats/chats.component';
 import { MessageComponent } from './components/messages/message/message.component';
 import { ChatScreenComponent } from './components/messages/chat-screen/chat-screen.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ChatScreenComponent } from './components/messages/chat-screen/chat-scre
     ChatElementComponent,
     ChatsComponent,
     MessageComponent,
-    ChatScreenComponent
+    ChatScreenComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

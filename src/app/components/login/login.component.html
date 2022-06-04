@@ -1,0 +1,34 @@
+<div class="h-screen flex">
+    <div class="flex-1">
+        <div class="h-screen flex flex-col justify-between items-center py-20 px-48">
+            <div class="flex items-center" >
+                <img src="assets/logo.svg">
+                <span class="font-bold text-primary text-3xl">Correct<span class="text-secondary">In</span></span>
+            </div>
+            <div class="w-full flex items-center flex-col">
+                <h1 class="text-3xl">Login 
+                    <span class="font-bold text-primary text-3xl">Correct
+                        <span class="text-secondary">In</span>
+                    </span>
+                </h1>
+                <span class="text-black text-opacity-50 text-l" >Login to start learning</span>
+                <form class="mt-12 flex flex-col w-[75%]" action="">
+                    <div class="flex flex-col" >
+                        <label class="text-xl" for="email">E-mail address</label>
+                        <input class="border rounded border-primary p-2 mb-4" type="email" name="" id="email">
+                    </div>
+                    <div class="flex flex-col" >
+                        <label class="text-xl" for="password">Password</label>
+                        <input class="border rounded border-primary p-2" type="password" name="" id="password">
+                    </div>
+                    <input class="p-2 bg-primary rounded-lg text-white px-6 text-l mt-4 self-end" type="submit" value="Login">
+                </form>
+            </div>
+            <div>Don't have an account? <a routerLink="/register" class="text-primary cursor-pointer" >Sign Up</a></div>
+        </div>
+    </div>
+    <div class="flex-1 flex justify-center items-center flex-col gap-16 bg-secondary bg-opacity-50" >
+        <h1 class="text-tertiary text-6xl text-center font-bold" >Learn <br> Languages <br> while <br> Teaching <br> Others</h1>
+        <img class="h-[50vh] w-[50vw]" src="assets/login-illustration.svg" alt="">
+    </div>
+</div>
