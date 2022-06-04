@@ -10,9 +10,9 @@ export class EntryComponent implements OnInit {
   selected:any = []
   isPopupOpen: boolean = false;
 
-  text1 = `I am son my way ss school.`
+  text1 = `I am go to school by bus.`
 
-  text2 = `I am on my way to school.`
+  text2 = `I go to the school by bus.`
 
   text1Words = this.text1.split(" ").map((word, idx) => {
     return {
@@ -41,6 +41,18 @@ export class EntryComponent implements OnInit {
   }
 
   samePlaceIsChanged(idx : number) {
-    return this.text1Words[idx].word !== this.text2Words[idx].word;
+    return this.isModifiedWithoutChangingLength() && this.text1Words[idx].word !== this.text2Words[idx].word;
+  }
+
+  isAdded() {
+    return this.text1Words.length < this.text2Words.length;
+  }
+
+  isDeleted() {
+    return this.text1Words.length > this.text2Words.length;
+  }
+
+  isModifiedWithoutChangingLength() {
+    return this.text1Words.length === this.text2Words.length; 
   }
 }
