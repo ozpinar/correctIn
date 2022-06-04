@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-entry',
-  templateUrl: './entry.component.html',
-  styleUrls: ['./entry.component.css']
+  selector: 'app-corrected-entry',
+  templateUrl: './corrected-entry.component.html',
+  styleUrls: ['./corrected-entry.component.css']
 })
-export class EntryComponent implements OnInit {
+export class CorrectedEntryComponent implements OnInit {
 
   selected:any = []
   isPopupOpen: boolean = false;
