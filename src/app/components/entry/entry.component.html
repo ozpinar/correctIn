@@ -1,4 +1,4 @@
-<div class="p-8 shadow-post rounded-lg">
+<div class="p-7 shadow-post rounded-lg">
     <div class="flex justify-between items-center">
         <div class="flex gap-4">
             <img src="/assets/user.svg" class="border rounded-full border-primary w-12 h-12">
@@ -35,18 +35,38 @@
             </div>
         </div>
     </div>
-    <div class="mt-6" >
-        <span *ngFor="let word of words" 
-        class="transition-all
-               text-lg
-               text-center 
-               rounded-md 
-               hover:p-2 
-               hover:bg-secondary 
-               hover:bg-opacity-50
-               hover:cursor-pointer"
-               >
-        {{word}} 
-    </span>
+    <div class="mt-6 border-b-2 pb-4" >
+        <span 
+            *ngFor="let word of text1Words" 
+            [class.line-through]="!wordIsInCorrected(word) || samePlaceIsChanged(word.id)"
+            class="transition-all
+                text-lg
+                text-center 
+                hover:bg-tertiary 
+                hover:bg-opacity-30
+                hover:cursor-pointer
+                hover:overflow-hidden"
+                >
+            {{word.word}}
+        </span>
+    </div>
+    <div class="pt-4">
+        <div class="bg-secondary border bg-opacity-30 border-primary rounded-lg p-2 mt-2 mb-4 font-light" >
+            The spelling of on is incorrect and it should be to instead of ss.
+        </div>
+        <span 
+            *ngFor="let word of text2Words"
+            [class.bg-primary]="!wordIsInOriginal(word) || samePlaceIsChanged(word.id)"
+            [class.bg-opacity-30]="!wordIsInOriginal(word) || samePlaceIsChanged(word.id)"
+            class="transition-all
+                text-lg
+                text-center 
+                hover:bg-tertiary 
+                hover:bg-opacity-30
+                hover:cursor-pointer
+                hover:overflow-hidden"
+                >
+            {{word.word}}
+        </span>
     </div>
 </div>

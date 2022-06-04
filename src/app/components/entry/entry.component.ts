@@ -7,19 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntryComponent implements OnInit {
 
-  lorem = `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-  Quos cum ea aliquam blanditiis, saepe labore illo odit aliquid 
-  temporibus dicta vero harum deserunt tempora quas voluptatem 
-  ipsa corporis dolores nesciunt? Ad, ex deleniti corrupti quaerat 
-  explicabo suscipit excepturi, placeat perspiciatis consequuntur, 
-  saepe enim hic aliquam impedit ducimus officiis aliquid voluptatibus! 
-  Beatae eveniet temporibus neque asperiores consequuntur aspernatur 
-  maiores excepturi distinctio architecto nulla quo, expedita pariatur 
-  saepe sit est repellendus vero porro! Quas temporibus maiores alias?`
+  selected:any = []
+  isPopupOpen: boolean = false;
 
-  words = this.lorem.split(" ");
+  text1 = `I am son my way ss school.`
+
+  text2 = `I am on my way to school.`
+
+  text1Words = this.text1.split(" ").map((word, idx) => {
+    return {
+      id: idx,
+      word: word
+    }
+  })
+
+  text2Words = this.text2.split(" ").map((word, idx) => {
+    return {
+      id: idx,
+      word: word
+    }
+  })
 
   constructor() { }
 
   ngOnInit(): void { }
+
+  wordIsInOriginal(word: any) {
+    return this.text1Words.findIndex(text1Word => text1Word.word.toLowerCase() === word.word.toLowerCase()) > -1;
+  }
+
+  wordIsInCorrected(word: any) {
+    return this.text2Words.findIndex(text2Word => text2Word.word.toLowerCase() === word.word.toLowerCase()) > -1;
+  }
+
+  samePlaceIsChanged(idx : number) {
+    return this.text1Words[idx].word !== this.text2Words[idx].word;
+  }
 }
