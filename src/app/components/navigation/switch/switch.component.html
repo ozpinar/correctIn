@@ -1,4 +1,4 @@
 <div class="flex pl-4">
-    <div (click)="setState('TEACH')" [ngClass]="switchState == 'TEACH' ? 'bg-primary' : 'bg-secondary'" class="transition-all cursor-pointer p-2 px-6 rounded-left text-white">Teach</div>
-    <div (click)="setState('LEARN')" [ngClass]="switchState == 'LEARN' ? 'bg-primary' : 'bg-secondary'" class="transition-all cursor-pointer p-2 px-6 rounded-right text-white">Learn</div>
+    <div (click)="setState('TEACH')" [ngClass]="stream.getValue(state$) == 'TEACH' ? 'bg-primary' : 'bg-secondary'" class="transition-all cursor-pointer p-2 px-6 rounded-left text-white">Teach</div>
+    <div (click)="setState('LEARN')" [ngClass]="stream.getValue(state$) == 'LEARN' ? 'bg-primary' : 'bg-secondary'" class="transition-all cursor-pointer p-2 px-6 rounded-right text-white">Learn</div>
 </div>

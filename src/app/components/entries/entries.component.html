@@ -1,4 +1,4 @@
 <div class="flex flex-col gap-4">
-    <app-entry *ngIf="pageState === 'TEACH'"></app-entry>
-    <app-corrected-entry *ngIf="pageState === 'LEARN'"></app-corrected-entry>
+    <app-entry *ngIf="stream.getValue(state$) === 'TEACH'"></app-entry>
+    <app-corrected-entry *ngIf="stream.getValue(state$) === 'LEARN'"></app-corrected-entry>
 </div>
