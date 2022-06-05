@@ -9,6 +9,17 @@ export class RegisterComponent implements OnInit {
 
   constructor() { }
 
+  languages = [
+    'English',
+    'Spanish',
+    'French',
+    'Portuguese',
+    'Turkish',
+    'Italian',
+    'Polish',
+    'Romanian'
+  ];
+
   ngOnInit(): void {
   }
 
