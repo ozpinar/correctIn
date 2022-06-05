@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-entries',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntriesComponent implements OnInit {
 
-  constructor() { }
+  state$: any;
+  pageState: any;
+
+  constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>) {
+    this.state$ = store.select('switch');
+  }
 
   ngOnInit(): void {
+    this.state$.subscribe((state:any) => this.pageState = state);
   }
 
 }

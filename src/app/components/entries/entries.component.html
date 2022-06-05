@@ -1,10 +1,4 @@
 <div class="flex flex-col gap-4">
-    <app-entry></app-entry>
-    <app-corrected-entry></app-corrected-entry>
-    <app-corrected-entry></app-corrected-entry>
-    <app-corrected-entry></app-corrected-entry>
-    <app-corrected-entry></app-corrected-entry>
-    <app-corrected-entry></app-corrected-entry>
-    <app-corrected-entry></app-corrected-entry>
-    <app-corrected-entry></app-corrected-entry>
+    <app-entry *ngIf="pageState === 'TEACH'"></app-entry>
+    <app-corrected-entry *ngIf="pageState === 'LEARN'"></app-corrected-entry>
 </div>

@@ -23,6 +23,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EntryComponent } from './components/entry/entry.component';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { switchReducer } from './store/reducers/switch.reducer';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({ switch: switchReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
