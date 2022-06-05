@@ -42,14 +42,7 @@
         <span 
             *ngFor="let word of text1Words" 
             [class.line-through]="!wordIsInCorrected(word) || samePlaceIsChanged(word.id)"
-            class="transition-all
-                text-lg
-                text-center 
-                hover:bg-tertiary 
-                hover:bg-opacity-30
-                hover:cursor-pointer
-                hover:overflow-hidden"
-                >
+            class="text-lg">
             {{word.word}}
         </span>
     </div>
@@ -61,14 +54,7 @@
             *ngFor="let word of text2Words"
             [class.bg-primary]="!wordIsInOriginal(word) || samePlaceIsChanged(word.id)"
             [class.bg-opacity-30]="!wordIsInOriginal(word) || samePlaceIsChanged(word.id)"
-            class="transition-all
-                text-lg
-                text-center 
-                hover:bg-tertiary 
-                hover:bg-opacity-30
-                hover:cursor-pointer
-                hover:overflow-hidden"
-                >
+            class="text-lg">
             {{word.word}}
         </span>
     </div>
