@@ -1,0 +1,8 @@
+<div class="flex flex-col gap-4">
+    <div class="flex mb-2 px-2">
+        <button (click)="setFilter('WAITINGPOSTS')" [class.bg-opacity-40]="filter != 'WAITINGPOSTS'" class="text-white bg-tertiary px-4 py-2 rounded-full">Waiting posts</button>
+        <button (click)="setFilter('CORRECTEDPOSTS')" [class.bg-opacity-40]="filter != 'CORRECTEDPOSTS'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Corrected posts</button>
+    </div>
+    <app-entry *ngIf="filter == 'WAITINGPOSTS'"></app-entry>
+    <app-corrected-entry *ngIf="filter == 'CORRECTEDPOSTS'"></app-corrected-entry>
+</div>

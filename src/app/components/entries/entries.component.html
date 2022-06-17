@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-4">
-    <div class="flex mb-2">
-        <button (click)="setFilter('EVERYONE')" [class.opacity-40]="filter != 'EVERYONE'" class="text-white bg-tertiary px-4 py-2 rounded-full">Everyone</button>
-        <button (click)="setFilter('FOLLOWING')" [class.opacity-40]="filter != 'FOLLOWING'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Following</button>
+    <div class="flex mb-2 px-2">
+        <button (click)="setFilter('EVERYONE')" [class.bg-opacity-40]="filter != 'EVERYONE'" class="text-white bg-tertiary px-4 py-2 rounded-full">Everyone</button>
+        <button (click)="setFilter('FOLLOWING')" [class.bg-opacity-40]="filter != 'FOLLOWING'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Following</button>
     </div>
     <app-entry *ngIf="stream.getValue(state$) === 'TEACH'"></app-entry>
     <app-corrected-entry *ngIf="stream.getValue(state$) === 'LEARN'"></app-corrected-entry>

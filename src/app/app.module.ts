@@ -27,6 +27,7 @@ import { StoreModule } from '@ngrx/store';
 import { switchReducer } from './store/reducers/switch.reducer';
 import { SearchComponent } from './components/top-menu/search/search.component';
 import { NotificationsComponent } from './components/top-menu/notifications/notifications.component';
+import { ProfileEntriesComponent } from './components/entries/profile-entries/profile-entries.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { NotificationsComponent } from './components/top-menu/notifications/noti
     RegisterComponent,
     EntryComponent,
     SearchComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ProfileEntriesComponent
   ],
   imports: [
     BrowserModule,

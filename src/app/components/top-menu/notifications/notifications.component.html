@@ -12,7 +12,7 @@
         {{notifications.length}}
     </span>
 </div>
-<div #menu class="absolute mt-2 shadow-post w-64 bg-white transform -translate-x-1/2 left-0 rounded-lg" *ngIf="isOpen">
+<div #menu class="absolute mt-2 shadow-post w-64 bg-white transform rounded-lg right-1/2" *ngIf="isOpen">
     <div class="flex justify-around border-y cursor-pointer">
         <div (click)="setState('NOTIFICATIONS')" [class.bg-secondary]="state === 'NOTIFICATIONS'" class="text-center bg-right px-2 py-2 w-full text-primary bg-opacity-20">
             Notifications
