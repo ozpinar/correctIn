@@ -9,6 +9,7 @@ import { StreamService } from 'src/app/services/stream.service';
 })
 export class EntriesComponent implements OnInit {
 
+  filter: 'EVERYONE' | 'FOLLOWING' = "EVERYONE";
   state$: any;
 
   constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService) {
@@ -17,4 +18,7 @@ export class EntriesComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  setFilter(incoming: 'EVERYONE' | 'FOLLOWING') {
+    this.filter = incoming;
+  }
 }

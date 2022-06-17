@@ -25,6 +25,8 @@ import { EntryComponent } from './components/entry/entry.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { switchReducer } from './store/reducers/switch.reducer';
+import { SearchComponent } from './components/top-menu/search/search.component';
+import { NotificationsComponent } from './components/top-menu/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { switchReducer } from './store/reducers/switch.reducer';
     ChatScreenComponent,
     LoginComponent,
     RegisterComponent,
-    EntryComponent
+    EntryComponent,
+    SearchComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

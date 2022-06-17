@@ -9,6 +9,8 @@ export class EntryComponent implements OnInit {
 
   isEditing = false;
   text = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, autem! At error dolorum nihil iste, facere nemo ex cum officia."
+  originalText = this.text;
+  comment = "";
 
   constructor() { }
 
@@ -17,6 +19,12 @@ export class EntryComponent implements OnInit {
 
   toggleEditing() {
     this.isEditing = !this.isEditing
+  }
+
+  cancel() {
+    this.isEditing = false;
+    this.text = this.originalText;
+    this.comment = "";
   }
 
 }

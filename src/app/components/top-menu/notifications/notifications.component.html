@@ -1,0 +1,37 @@
+<div (click)="togglePopup()" class="relative cursor-pointer">
+    <svg
+        class="fill-primary"
+        xmlns="http://www.w3.org/2000/svg" 
+        width="28" height="28" 
+        viewBox="0 0 24 24">
+        <path 
+            d="M18.546 2h-13.069l-5.477 10.986v9.014h24v-9.014l-5.454-10.986zm-3.796 13h-5.5l-2.25-2h-4.666l4.266-9h10.82l4.249 9h-4.669l-2.25 2z"
+        />
+    </svg>
+    <span *ngIf="notifications.length" class="absolute -right-2 top-2 bg-tertiary text-white rounded-full px-2 text-sm">
+        {{notifications.length}}
+    </span>
+</div>
+<div #menu class="absolute mt-2 shadow-post w-64 bg-white transform -translate-x-1/2 left-0 rounded-lg" *ngIf="isOpen">
+    <div class="flex justify-around border-y cursor-pointer">
+        <div (click)="setState('NOTIFICATIONS')" [class.bg-secondary]="state === 'NOTIFICATIONS'" class="text-center bg-right px-2 py-2 w-full text-primary bg-opacity-20">
+            Notifications
+        </div>
+        <div (click)="setState('MESSAGES')"  [class.bg-secondary]="state === 'MESSAGES'" class="text-center px-2 py-2 w-full text-primary bg-opacity-20">
+            Messages
+        </div>
+    </div>
+    <div class="px-2 py-4">
+        <div *ngIf="state == 'NOTIFICATIONS'">
+            <p>Not1</p>
+            <p>Not1</p>
+            <p>Not1</p>
+        </div>
+        <div *ngIf="state == 'MESSAGES'">
+            <p>Not1</p>
+            <p>Not1</p>
+            <p>Not1</p>
+        </div>
+    </div>
+</div>
+

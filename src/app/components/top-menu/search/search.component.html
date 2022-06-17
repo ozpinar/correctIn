@@ -1,0 +1,8 @@
+<div class="relative">
+    <input [(ngModel)]="searchParam" placeholder="Search..." type="text" class="outline-primary rounded-full shadow-post py-2 pl-6 pr-10">
+    <span (click)="clearSearchParam()" *ngIf="searchParam" class="cursor-pointer p-2 absolute top-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 opacity-40 font-bold">X</span>
+    <div class="absolute mt-2 shadow-post w-full bg-white p-4 rounded-lg" *ngIf="searchParam">
+        <p>1</p>
+        <p>2</p>
+    </div>
+</div>
