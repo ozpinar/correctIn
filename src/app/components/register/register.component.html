@@ -12,34 +12,58 @@
                     </span>
                 </h1>
                 <span class="text-black text-opacity-50 text-l" >Register to start learning</span>
-                <form class="mt-12 flex flex-col w-[75%]" action="">
+                <form [formGroup]="registerForm" (ngSubmit)="register()" class="mt-12 flex flex-col w-[75%]">
                     <div class="flex flex-col" >
-                        <label class="text-xl" for="name">Full name</label>
-                        <input autocomplete="off" class="border rounded border-primary p-2 mb-4" type="text" name="" id="name">
+                        <div class="flex gap-[10%]">
+                            <div class="flex flex-col w-[45%]">
+                                <label class="text-xl" for="name">Name</label>
+                                <input [class.border-red-600]="registerForm.get('name')?.errors && registerForm.get('name')?.touched" formControlName="name" autocomplete="off" class="outline-none border rounded border-primary p-2 mb-4" type="text" id="name">
+                                <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched" class="text-tertiary -mt-4">Please enter a name</div>
+                            </div>
+                            <div class="flex flex-col w-[45%]">
+                                <label class="text-xl" for="surname">Surname</label>
+                                <input [class.border-red-600]="registerForm.get('surname')?.errors && registerForm.get('surname')?.touched" formControlName="surname" autocomplete="off" class="outline-none border rounded border-primary p-2 mb-4" type="text" id="surname">
+                                <div *ngIf="registerForm.get('surname')?.errors && registerForm.get('surname')?.touched" class="text-tertiary -mt-4">Please enter a surname</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex flex-col" >
                         <label class="text-xl" for="email">E-mail address</label>
-                        <input class="border rounded border-primary p-2 mb-4" type="email" name="" id="email">
+                        <input [class.border-red-600]="registerForm.get('email')?.errors && registerForm.get('email')?.touched" formControlName="email" class="outline-none border rounded border-primary p-2 mb-4" type="email" id="email">
+                        <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="text-tertiary -mt-4">Please enter a valid e-mail</div>
                     </div>
                     <div class="flex flex-col" >
                         <label class="text-xl" for="password">Password</label>
-                        <input class="border rounded border-primary p-2" type="password" name="" id="password">
+                        <input [class.border-red-600]="registerForm.get('password')?.errors && registerForm.get('password')?.touched" formControlName="password" class="outline-none border rounded border-primary p-2 mb-4" type="password" id="password">
+                        <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="text-tertiary -mt-4">Please enter a password</div>
+                        <div *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched" class="text-tertiary -mt-4">Password should be longer than 5 characters</div>
+                        <div *ngIf="registerForm.get('password')?.hasError('maxlength') && registerForm.get('password')?.touched" class="text-tertiary -mt-4">Password should be shorter than 25 characters</div>
+                    </div>
+                    <div class="flex flex-col" >
+                        <label class="text-xl" for="confirmpassword">Confirm Password</label>
+                        <input [class.border-red-600]="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched" formControlName="confirmPassword" class="outline-none border rounded border-primary p-2" type="password" id="confirmpassword">
+                        <div *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching') && registerForm.get('confirmPassword')?.touched" class="text-tertiary">Passwords should match</div>
                     </div>
                     <div class="flex justify-between mt-4 border-t-2 pt-4 border-primary border-opacity-50" >
                         <div class="flex flex-col">
                             <label class="text-xl mb-2" for="native">Native Language</label>
-                            <select class="rounded border border-primary p-2" name="" id="native">
-                                <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+                            <select [class.border-red-600]="registerForm.get('native')?.errors && registerForm.get('native')?.touched" formControlName="native" class="rounded border border-primary p-2" id="native">
+                                <option value="">Select native</option>
+                                <option *ngFor="let language of languages" [ngValue]="language.id" >{{language.name}}</option>
                             </select>
+                            <div *ngIf="registerForm.get('native')?.hasError('required') && registerForm.get('native')?.touched" class="text-tertiary">Native language required</div>
                         </div>
                         <div class="flex flex-col">
                             <label class="text-xl mb-2" for="target">Target Language</label>
-                            <select class="rounded border border-primary p-2" name="" id="target">
-                                <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+                            <select [class.border-red-600]="registerForm.get('target')?.errors && registerForm.get('target')?.touched" formControlName="target" class="rounded border border-primary p-2" id="target">
+                                <option value="">Select target</option>
+                                <option *ngFor="let language of languages" [ngValue]="language.id" >{{language.name}}</option>
                             </select>
+                            <div *ngIf="registerForm.get('target')?.hasError('required') && registerForm.get('target')?.touched" class="text-tertiary">Target language required</div>
                         </div>
                     </div>
-                    <input class="p-2 bg-primary rounded-lg text-white px-12 text-l mt-12 self-end" type="submit" value="Register">
+                    <div *ngIf="registerForm.get('target')?.hasError('isDifferent') && registerForm.get('target')?.touched" class="text-tertiary">Native and target should be different</div>
+                    <input [class.grayscale]="!registerForm.valid" [disabled]="!registerForm.valid" class="p-2 bg-primary rounded-lg text-white px-12 text-l mt-12 self-end" type="submit" value="Register">
                 </form>
             </div>
             <div>Already have an account? <a routerLink="/" class="text-primary cursor-pointer">Log In</a></div>

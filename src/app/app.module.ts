@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
@@ -22,12 +21,13 @@ import { ChatScreenComponent } from './components/messages/chat-screen/chat-scre
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EntryComponent } from './components/entry/entry.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { switchReducer } from './store/reducers/switch.reducer';
 import { SearchComponent } from './components/top-menu/search/search.component';
 import { NotificationsComponent } from './components/top-menu/notifications/notifications.component';
 import { ProfileEntriesComponent } from './components/entries/profile-entries/profile-entries.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,9 @@ import { ProfileEntriesComponent } from './components/entries/profile-entries/pr
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ switch: switchReducer })
   ],
   providers: [],
