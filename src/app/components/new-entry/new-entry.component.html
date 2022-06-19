@@ -1,6 +1,9 @@
 <div class="shadow-post rounded-lg mb-6 px-6 py-4 h-40" >
-    <textarea class="w-full text-lg resize-none placeholder:text-primary placeholder:text-xl outline-none" placeholder="What do you think?" rows="3"></textarea>
-    <div class="flex justify-end">
-        <button class="bg-primary text-white px-6 py-2 rounded-full">POST</button>
-    </div>
+    <form [formGroup]="entryForm" (ngSubmit)="postEntry()">
+        <textarea formControlName="text" class="w-full text-lg resize-none placeholder:text-primary placeholder:text-xl outline-none" placeholder="What do you think?" rows="3"></textarea>
+        <div class="flex justify-between items-center">
+            <span class="text-tertiary">{{entryForm.get('text')?.value.length < 280 ? entryForm.get('text')?.value.length + "/280" : "Maximum character limit exceeded."}}</span>
+            <button [class.grayscale]="!entryForm.valid" [disabled]="!entryForm.valid" type="submit" class="bg-primary text-white px-6 py-2 rounded-full">POST</button>
+        </div>
+    </form>
 </div>

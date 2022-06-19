@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-entry',
@@ -6,15 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entry.component.css']
 })
 export class EntryComponent implements OnInit {
+  @Input() id: any;
+  @Input() text = "";
+  @Input() user: any;
+  @Input() date: any;
 
   isEditing = false;
-  text = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima, autem! At error dolorum nihil iste, facere nemo ex cum officia."
-  originalText = this.text;
   comment = "";
-
+  originalText = "";
+  
   constructor() { }
-
+  
   ngOnInit(): void {
+    this.originalText = this.text;
+    this.date = new Date(this.date);
   }
 
   toggleEditing() {

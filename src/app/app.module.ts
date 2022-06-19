@@ -27,7 +27,11 @@ import { switchReducer } from './store/reducers/switch.reducer';
 import { SearchComponent } from './components/top-menu/search/search.component';
 import { NotificationsComponent } from './components/top-menu/notifications/notifications.component';
 import { ProfileEntriesComponent } from './components/entries/profile-entries/profile-entries.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { NgPipesModule } from 'ngx-pipes';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
@@ -53,7 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
     EntryComponent,
     SearchComponent,
     NotificationsComponent,
-    ProfileEntriesComponent
+    ProfileEntriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +65,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ switch: switchReducer })
+    StoreModule.forRoot({ switch: switchReducer }),
+    NgPipesModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

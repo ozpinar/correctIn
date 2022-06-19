@@ -46,18 +46,6 @@ export class RegisterComponent implements OnInit {
     this.initializeForm();
   }
 
-  changeNative(e: any) {
-    this.registerForm.get('native')?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-
-  changeTarget(e: any) {
-    this.registerForm.get('target')?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl | any) => {
       return control?.value === control?.parent?.controls[matchTo].value ? null : { isMatching: true }
@@ -72,7 +60,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.registerForm.reset();
     // this.authService.register(this.registerForm.value).subscribe(token => console.log(token));
+    this.registerForm.reset();
   }
 }

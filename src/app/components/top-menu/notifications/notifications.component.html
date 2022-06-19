@@ -12,25 +12,23 @@
         {{notifications.length}}
     </span>
 </div>
-<div #menu class="absolute mt-2 shadow-post w-64 bg-white transform rounded-lg right-1/2" *ngIf="isOpen">
+<div #menu class="absolute mt-2 shadow-post w-72 bg-white transform rounded-lg right-1/2 z-50" *ngIf="isOpen">
     <div class="flex justify-around border-y cursor-pointer">
-        <div (click)="setState('NOTIFICATIONS')" [class.bg-secondary]="state === 'NOTIFICATIONS'" class="text-center bg-right px-2 py-2 w-full text-primary bg-opacity-20">
-            Notifications
+        <div (click)="setState('NOTIFICATIONS')" [class.bg-secondary]="state === 'NOTIFICATIONS'" class="flex justify-around text-center bg-right px-2 py-2 w-full text-primary bg-opacity-20">
+            <span>Notifications</span>
+            <span class="bg-tertiary text-center flex items-center text-white w-6 h-6 p-2 rounded-full text-sm"> {{correctNotifications.length}}</span>
         </div>
-        <div (click)="setState('MESSAGES')"  [class.bg-secondary]="state === 'MESSAGES'" class="text-center px-2 py-2 w-full text-primary bg-opacity-20">
-            Messages
+        <div (click)="setState('MESSAGES')"  [class.bg-secondary]="state === 'MESSAGES'" class="flex justify-around text-center px-2 py-2 w-full text-primary bg-opacity-20">
+            <span>Messages</span> 
+            <span class="bg-tertiary text-center flex items-center text-white rounded-full w-6 h-6 p-2 text-sm"> {{messageNotifications.length}}</span>
         </div>
     </div>
     <div class="px-2 py-4">
         <div *ngIf="state == 'NOTIFICATIONS'">
-            <p>Not1</p>
-            <p>Not1</p>
-            <p>Not1</p>
+            <p *ngFor="let notification of correctNotifications" >{{notification.message}}</p>
         </div>
         <div *ngIf="state == 'MESSAGES'">
-            <p>Not1</p>
-            <p>Not1</p>
-            <p>Not1</p>
+            <p *ngFor="let messageNotification of messageNotifications" >{{messageNotification.message}}</p>
         </div>
     </div>
 </div>

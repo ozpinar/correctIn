@@ -3,14 +3,15 @@
     <div class="flex-1 lg:hidden">
         <app-chats></app-chats>
     </div>
-    <div class="overflow-scroll px-4 py-4 flex-[2] flex flex-col justify-between text-center">
-        <app-message type="received" message="" ></app-message>
-        {{username}}
-        <form action="">
+    <div class="px-4 py-4 flex-[2] flex flex-col justify-between text-center relative">
+        <div #content class="overflow-scroll h-[calc(100vh-5rem)]">
+            <app-message *ngFor="let message of messages" [type]="message.type" [message]="message.message" ></app-message>
+        </div>
+        <form [formGroup]="messageForm" (ngSubmit)="sendMessage($event)" class="flex-1">
             <div class="flex items-center relative gap-1" >
-                <input class="border w-full border-primary p-2 rounded-lg" type="text" name="" id="">
-                <button type="submit">
-                    <svg class="fill-primary absolute right-4 bottom-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                <textarea (keydown.enter)="sendMessage($event)" rows="1" formControlName="message" class="resize-none outline-none border w-full border-primary p-2 pr-10 rounded-lg" type="text" name="" id=""></textarea>
+                <button [disabled]="!messageForm.valid" type="submit">
+                    <svg [class.fill-gray-400]="!messageForm.valid" class="fill-primary absolute right-4 bottom-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
                 </button>
             </div>
         </form>

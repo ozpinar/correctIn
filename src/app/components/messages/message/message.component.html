@@ -1,14 +1,14 @@
 <div *ngIf="type == 'sent'" class="flex justify-end ">
-    <span class="w-64 flex flex-col items-start text-white bg-primary py-4 px-6 rounded-chat-sent">
+    <span class="w-72 flex flex-col items-start text-white bg-primary py-4 px-6 rounded-chat-sent mb-2">
         <span class="font-bold mb-2" >John Doe</span>
-        <span class="text-left" >TTest messageTest messageTest messageTest messageest message</span>
+        <span class="break-all text-left" >{{message}}</span>
         <span class="self-end mt-2 font-light">13:22</span>
     </span>
 </div>
 <div *ngIf="type == 'received'" class="flex justify-start ">
-    <span class="w-64 flex flex-col items-start text-primary bg-primary bg-opacity-20 py-4 px-6 rounded-chat-received">
+    <span class="w-72 flex flex-col items-start text-primary bg-primary bg-opacity-20 py-4 px-6 rounded-chat-received mb-2">
         <span class="font-bold mb-2" >John Doe</span>
-        <span class="text-left">Test message received</span>
+        <span class="break-all text-left">{{message}}</span>
         <span class="self-end mt-2 font-light">13:22</span>
     </span>
 </div>

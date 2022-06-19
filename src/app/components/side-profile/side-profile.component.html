@@ -6,7 +6,7 @@
             -translate-y-1/2">
     </div>
     <div class="mt-10 flex items-center flex-col">
-        <span class="text-xl text-primary font-bold">Emiliano Espana</span>
+        <span class="text-xl text-primary font-bold">{{user.firstName}} {{user.lastName}}</span>
         <div class="flex gap-5 mt-2">
             <div class="flex flex-col items-center">
                 <span class="text-sm opacity-70 text-tertiary font-light">Native</span>
@@ -14,7 +14,7 @@
                     class="rounded-md border"
                     width="32px"
                     alt="United States"
-                    src="http://purecatamphetamine.github.io/country-flag-icons/3x2/TR.svg"
+                    [src]="flags[native]"
                     />
             </div>
             <div class="flex flex-col items-center">
@@ -23,7 +23,7 @@
                     class="rounded-md border"
                     width="32px"
                     alt="United States"
-                    src="http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg"
+                    [src]="flags[target]"
                     />
             </div>
         </div>

@@ -3,8 +3,8 @@
         <div class="flex gap-4">
             <img src="/assets/user.svg" class="border rounded-full border-primary w-12 h-12">
             <div class="flex flex-col">
-                <span class="text-primary text-lg">Emiliano Espana</span>
-                <span class="text-secondary opacity-70" >16 mins ago</span>
+                <span class="text-primary text-lg">{{user.firstName}} {{user.lastName}}</span>
+                <span class="text-secondary opacity-70" >{{date | timeAgo}}</span>
             </div>
         </div>
         <div class="relative inline-block text-left dropdown">
