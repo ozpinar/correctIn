@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { PostService } from 'src/app/services/post.service';
 import { StreamService } from 'src/app/services/stream.service';
@@ -12,7 +12,7 @@ export class EntriesComponent implements OnInit {
 
   filter: 'EVERYONE' | 'FOLLOWING' = "EVERYONE";
   state$: any;
-  uncheckedPosts: any;
+  uncheckedPosts : any;
   isLoading = true;
 
   constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService, private postService: PostService) {
@@ -20,16 +20,17 @@ export class EntriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUncheckedPosts();
+    this.getUncheckedPosts(0);
   }
 
   setFilter(incoming: 'EVERYONE' | 'FOLLOWING') {
     this.filter = incoming;
   }
 
-  getUncheckedPosts() {
-    this.postService.getPosts().subscribe((res:any) => {
-      this.uncheckedPosts = res.posts
+  getUncheckedPosts(page: number) {
+    this.isLoading = true;
+    this.postService.getPosts(page).subscribe((res:any) => {
+      page === 0 ? this.uncheckedPosts = res.posts : this.uncheckedPosts.push(...res.posts);
       this.isLoading = false;
     });
   }

@@ -45,4 +45,9 @@ export class AuthService {
   setUser(user: any) {
     this.currentUserSource.next(user);
   }
+
+  logout() {
+    localStorage.clear();
+    this.currentUserSource.next(null);
+  }
 }

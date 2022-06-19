@@ -12,6 +12,7 @@
                     </span>
                 </h1>
                 <span class="text-black text-opacity-50 text-l" >Register to start learning</span>
+                <div class="mt-4 -mb-4 text-lg text-white bg-primary bg-opacity-50 border p-2 px-4 rounded-lg" *ngIf="message">{{message}}</div>
                 <form [formGroup]="registerForm" (ngSubmit)="register()" class="mt-12 flex flex-col w-[75%]">
                     <div class="flex flex-col" >
                         <div class="flex gap-[10%]">
@@ -49,7 +50,7 @@
                             <label class="text-xl mb-2" for="native">Native Language</label>
                             <select [class.border-red-600]="registerForm.get('native')?.errors && registerForm.get('native')?.touched" formControlName="native" class="rounded border border-primary p-2" id="native">
                                 <option value="">Select native</option>
-                                <option *ngFor="let language of languages" [ngValue]="language.id" >{{language.name}}</option>
+                                <option *ngFor="let language of languages" [ngValue]="language.id" >{{language.languageName}}</option>
                             </select>
                             <div *ngIf="registerForm.get('native')?.hasError('required') && registerForm.get('native')?.touched" class="text-tertiary">Native language required</div>
                         </div>
@@ -57,7 +58,7 @@
                             <label class="text-xl mb-2" for="target">Target Language</label>
                             <select [class.border-red-600]="registerForm.get('target')?.errors && registerForm.get('target')?.touched" formControlName="target" class="rounded border border-primary p-2" id="target">
                                 <option value="">Select target</option>
-                                <option *ngFor="let language of languages" [ngValue]="language.id" >{{language.name}}</option>
+                                <option *ngFor="let language of languages" [ngValue]="language.id" >{{language.languageName}}</option>
                             </select>
                             <div *ngIf="registerForm.get('target')?.hasError('required') && registerForm.get('target')?.touched" class="text-tertiary">Target language required</div>
                         </div>

@@ -9,8 +9,8 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
   
-  getPosts() {
-    return this.http.get(environment.BASE_URL + '/api/post/all?sortBy=createdAt')
+  getPosts(page: number) {
+    return this.http.get(environment.BASE_URL + '/api/post/all?sortBy=createdAt&size=5&page=' +page)
   }
 
   createPost(postValues: any) {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-register',
@@ -11,18 +13,9 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) { }
-
-  languages = [
-    {id: 1, name: "English"},
-    {id: 2, name: "Spanish"},
-    {id: 3, name: "French"},
-    {id: 4, name: "Portuguese"},
-    {id: 5, name: "Turkish"},
-    {id: 6, name: "Italian"},
-    {id: 7, name: "Polish"},
-    {id: 8, name: "Romanian"},
-  ];
+  constructor(private authService: AuthService, private fb: FormBuilder, private languageService: LanguageService, private router: Router) { }
+  message: any;
+  languages:any;
 
   initializeForm() {
     this.registerForm = this.fb.group({
@@ -44,6 +37,11 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.getLanguages();
+  }
+
+  getLanguages() {
+    this.languageService.getLanguages().subscribe((res:any) => this.languages = res)
   }
 
   matchValues(matchTo: string): ValidatorFn {
@@ -60,7 +58,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    // this.authService.register(this.registerForm.value).subscribe(token => console.log(token));
+    this.authService.register(this.registerForm.value).subscribe(() => this.message = "You have been registered successfully.");
     this.registerForm.reset();
+    setTimeout(() => {
+      this.router.navigateByUrl('/');
+    }, 1000);
   }
 }

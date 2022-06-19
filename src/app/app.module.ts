@@ -31,6 +31,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgPipesModule } from 'ngx-pipes';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     StoreModule.forRoot({ switch: switchReducer }),
     NgPipesModule,
     BrowserAnimationsModule,
+    InfiniteScrollModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
