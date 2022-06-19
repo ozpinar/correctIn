@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   @ViewChild(EntriesComponent) private entriesComponent: EntriesComponent;
   page = 1;
   totalPages: number;
+  done = false;
 
   constructor(private postService: PostService) { }
 
@@ -25,5 +26,6 @@ export class MainComponent implements OnInit {
     if (this.totalPages === this.page) {return};
     this.entriesComponent.getUncheckedPosts(this.page);
     this.page+=1;
+    this.done = true;
   }
 }

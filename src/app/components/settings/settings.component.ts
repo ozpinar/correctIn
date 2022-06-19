@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-settings',
@@ -10,11 +11,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SettingsComponent implements OnInit {
   updateForm: FormGroup
   user: any
-  constructor(private authService: AuthService, private fb: FormBuilder) { }
+  languages: any;
+  constructor(private authService: AuthService, private fb: FormBuilder, private languageService: LanguageService) { }
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe(user => this.user = user);
     this.initializeForm();
+    this.getLanguages();
+    console.log(this.user)
+  }
+
+  getLanguages() {
+    this.languageService.getLanguages().subscribe(res => this.languages = res)
   }
 
   initializeForm() {

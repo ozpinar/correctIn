@@ -12,4 +12,9 @@
         </circle>
     </svg>
     <app-corrected-entry *ngIf="stream.getValue(state$) === 'LEARN'"></app-corrected-entry>
+    <div *ngIf="done" class="flex items-center p-4">
+        <div class="flex-1 h-2 bg-secondary bg-opacity-20"></div>
+        <span class="px-2 text-primary">You have seen all posts</span>
+        <div class="flex-1 h-2 bg-secondary bg-opacity-20"></div>
+    </div>
 </div>

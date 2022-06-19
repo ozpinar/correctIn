@@ -1,9 +1,16 @@
+<div class="flex justify-between p-2 mb-1 text-tertiary bg-tertiary bg-opacity-10 rounded-lg" *ngIf="isDeleting">
+    <p class="">Are you sure you want to delete this entry?</p>
+    <div>
+        <button class="mr-2" (click)="confirmDelete()">Delete</button>
+        <button (click)="toggleDelete()">Cancel</button>
+    </div>
+</div>
 <div class="px-7 py-5 shadow-post rounded-lg">
     <div class="flex justify-between">
         <div class="flex gap-4">
             <img src="/assets/user.svg" class="border rounded-full border-primary w-12 h-12">
             <div class="flex flex-col">
-                <span class="text-primary text-lg">{{user.firstName | titlecase}} {{user.lastName | titlecase}}</span>
+                <span routerLink="/profile/{{user.id}}" class="text-primary text-lg cursor-pointer">{{user.firstName | titlecase}} {{user.lastName | titlecase}}</span>
                 <span class="text-secondary opacity-70" >{{date | timeAgo}}</span>
             </div>
         </div>
@@ -21,12 +28,12 @@
             </span>
             <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                 <div class="absolute right-0 w-40 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
-                    <div class="py-1">
+                    <div *ngIf="!isDeleting" class="py-1">
                         <button class="text-primary text-md flex items-center px-4 py-2 w-full leading-5 text-left hover:bg-secondary hover:bg-opacity-20 rounded-sm transition-colors cursor-pointer" role="menuitem">
                             <img width="12px" class="mr-1" src="/assets/edit.svg">
                             Edit
                         </button>
-                        <button class="text-tertiary text-md flex items-center px-4 py-2 w-full leading-5 text-left hover:bg-tertiary hover:bg-opacity-20 rounded-sm transition-colors cursor-pointer" role="menuitem">
+                        <button (click)="toggleDelete()" class="text-tertiary text-md flex items-center px-4 py-2 w-full leading-5 text-left hover:bg-tertiary hover:bg-opacity-20 rounded-sm transition-colors cursor-pointer" role="menuitem">
                             <img width="12px" class="mr-1" src="/assets/delete.svg">
                             Delete
                         </button>

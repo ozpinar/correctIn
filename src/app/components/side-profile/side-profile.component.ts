@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./side-profile.component.css']
 })
 export class SideProfileComponent implements OnInit {
+  @Input() otherUser: any;
+  @Input() loading: any;
+
   user: any;
   native: any;
   target: any;
@@ -24,7 +27,11 @@ export class SideProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.currentUser$.subscribe(user => this.user = user);
+    if (this.otherUser) {
+      this.user = this.otherUser;
+    } else {
+      this.authService.currentUser$.subscribe(user => this.user = user);
+    }
     this.native = this.user.nativeLanguage.languageName;
     this.target = this.user.foreignLanguage.languageName;
   }

@@ -25,14 +25,16 @@
                     <div class="flex justify-between mt-4 border-t-2 pt-4 border-primary border-opacity-50" >
                         <div class="flex flex-col">
                             <label class="text-xl mb-2" for="native">Native Language</label>
-                            <select class="rounded border border-primary p-2" name="" id="native">
-                                <option>1</option>
+                            <select class="rounded border border-primary p-2" id="native">
+                                <option value="">Select native</option>
+                                <option [selected]="language.id === user.nativeLanguage.id" *ngFor="let language of languages" [ngValue]="language.id" >{{language.languageName}}</option>
                             </select>
                         </div>
                         <div class="flex flex-col">
                             <label class="text-xl mb-2" for="target">Target Language</label>
-                            <select class="rounded border border-primary p-2" name="" id="target">
-                                <option>1</option>
+                            <select class="rounded border border-primary p-2" id="target">
+                                <option value="">Select target</option>
+                                <option [selected]="language.id === user.foreignLanguage.id" *ngFor="let language of languages" [ngValue]="language.id" >{{language.languageName}}</option>
                             </select>
                         </div>
                     </div>

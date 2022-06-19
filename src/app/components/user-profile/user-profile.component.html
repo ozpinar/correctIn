@@ -1,7 +1,7 @@
 <app-top-menu></app-top-menu>
 <div class="flex w-[100vw] h-[calc(100vh-5rem)] container mx-auto">
     <div class="flex-1 lg:hidden shadow-post rounded-lg h-80">
-        <app-side-profile></app-side-profile>
+        <app-side-profile *ngIf="user" [loading]="loading" [otherUser]="user"></app-side-profile>
     </div>
     <div class="flex-[2] flex flex-col">
         <div class="overflow-scroll px-6 pt-1 md:px-0 h-full">

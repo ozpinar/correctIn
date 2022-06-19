@@ -9,10 +9,10 @@ import { StreamService } from 'src/app/services/stream.service';
   styleUrls: ['./entries.component.css']
 })
 export class EntriesComponent implements OnInit {
-
+  @Input() done:any;
   filter: 'EVERYONE' | 'FOLLOWING' = "EVERYONE";
   state$: any;
-  uncheckedPosts : any;
+uncheckedPosts : any;
   isLoading = true;
 
   constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService, private postService: PostService) {

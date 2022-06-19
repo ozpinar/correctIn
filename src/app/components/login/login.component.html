@@ -30,7 +30,16 @@
                         formControlName="password" class="border rounded border-primary p-2" type="password" name="" id="password">
                         <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="text-tertiary">Please enter a password</div>
                     </div>
-                    <input [class.grayscale]="!loginForm.valid" [disabled]="!loginForm.valid" class="p-2 bg-primary rounded-lg text-white px-6 text-l mt-4 self-end" type="submit" value="Login">
+                    <button [class.grayscale]="!loginForm.valid && !loading" [disabled]="!loginForm.valid" class="p-2 bg-primary rounded-lg w-28 text-white px-6 text-l mt-4 self-end" type="submit">
+                        <span *ngIf="!loading">Login</span>
+                        <span *ngIf="loading">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="24px" height="24px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                                <circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                                  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+                                </circle>
+                            </svg>
+                        </span>
+                    </button>
                 </form>
             </div>
             <div>Don't have an account? <a routerLink="/register" class="text-primary cursor-pointer" >Sign Up</a></div>

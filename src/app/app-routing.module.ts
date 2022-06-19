@@ -7,6 +7,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'messages', component: MessagesComponent},
   {path: 'messages/:username', component: ChatScreenComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:id', component: UserProfileComponent},
   {path: 'settings', component: SettingsComponent}
 ];
 

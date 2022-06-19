@@ -11,6 +11,7 @@ export class EntryComponent implements OnInit {
   @Input() user: any;
   @Input() date: any;
 
+  isDeleting = false;
   isEditing = false;
   comment = "";
   originalText = "";
@@ -24,6 +25,16 @@ export class EntryComponent implements OnInit {
 
   toggleEditing() {
     this.isEditing = !this.isEditing
+  }
+
+  toggleDelete() {
+    this.isDeleting = !this.isDeleting;
+  }
+
+  confirmDelete() {
+    this.isDeleting = false;
+    console.log('deleted' + this.id);
+    //send request
   }
 
   cancel() {

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   user:any;
   errorMessage = "";
+  loading: boolean;
 
   constructor(private authService: AuthService, private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -30,12 +31,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     this.authService.login(this.loginForm.value).subscribe(
       () => {
         this.router.navigateByUrl('/home')
+        this.loading = false;
       },
       (error) => {
         this.errorMessage = error?.error?.message ?? "";
+        this.loading = false;
       });
     this.loginForm.reset();
   }
