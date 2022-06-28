@@ -18,7 +18,7 @@
             <span class="flex items-center rounded-md">
                 <button class="inline-flex items-center justify-center w-full text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                     <span class="text-primary text-lg">
-                        <div class="flex gap-1 p-3" >
+                        <div class="flex gap-1 p-3" *ngIf="isSelf" >
                             <div class="bg-primary w-1 h-1 rounded-full"></div>
                             <div class="bg-primary w-1 h-1 rounded-full"></div>
                             <div class="bg-primary w-1 h-1 rounded-full"></div>
@@ -47,7 +47,7 @@
         <textarea ngClass="text-lg shadow-post rounded-lg p-2" [(ngModel)]="text" *ngIf="isEditing" class="w-full"></textarea>
         <textarea placeholder="Add a comment..." ngClass="text-lg shadow-post border-primary rounded-lg p-2 mt-4" [(ngModel)]="comment" *ngIf="isEditing" class="w-full"></textarea>
         <div class="self-end mt-4" >
-            <button (click)="toggleEditing()" class="self-end bg-primary py-2 px-4 text-white rounded-full">
+            <button *ngIf="!isSelf" (click)="toggleEditing()" class="self-end bg-primary py-2 px-4 text-white rounded-full">
                 {{isEditing ? 'Submit' : 'Correct Now'}}
             </button>
             <button (click)="cancel()" *ngIf="isEditing" class="bg-tertiary py-2 px-4 text-white rounded-full ml-2" >X</button>

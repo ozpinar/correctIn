@@ -1,8 +1,14 @@
 <div class="relative">
-    <input [(ngModel)]="searchParam" placeholder="Search..." type="text" class="outline-primary rounded-full shadow-post py-2 pl-6 pr-10">
+    <input (ngModelChange)="searchUser()" [(ngModel)]="searchParam" placeholder="Search..." type="text" class="outline-primary rounded-full shadow-post py-2 pl-6 pr-10">
     <span (click)="clearSearchParam()" *ngIf="searchParam" class="cursor-pointer p-2 absolute top-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 opacity-40 font-bold">X</span>
     <div class="absolute mt-2 shadow-post w-full bg-white p-4 rounded-lg z-60" *ngIf="searchParam">
-        <p>1</p>
-        <p>2</p>
+        <app-loading *ngIf="loading"></app-loading>
+        <ng-container *ngIf="!loading">
+            <p (click)="navigateToUserProfile(user.id)" class="flex gap-2 cursor-pointer text-primary rounded p-4 mb-2 last:mb-0 hover:bg-opacity-20 hover:bg-secondary" *ngFor="let user of results">
+                <img src="/assets/profile.svg" width="18px" alt="">
+                <span>{{user.firstName}} {{user.lastName}}</span>
+            </p>
+        </ng-container>
+        <p class="text-primary" *ngIf="!results?.length && !loading">No results</p>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { StreamService } from 'src/app/services/stream.service';
 
@@ -9,8 +9,12 @@ import { StreamService } from 'src/app/services/stream.service';
 })
 export class ProfileEntriesComponent implements OnInit {
   
-  filter: 'WAITINGPOSTS' | 'CORRECTEDPOSTS' = "WAITINGPOSTS";
+  filter: 'POSTED' | 'CORRECTEDPOSTS' = "POSTED";
+  innerFilter: 'WAITING' | 'CORRECTED' = "WAITING";
   state$: any;
+  @Input() postedPosts: any;
+  @Input() correctedPosts: any;
+  @Input() correctedPostsOfUser:any;
 
   constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService) {
     this.state$ = store.select('switch');
@@ -18,8 +22,12 @@ export class ProfileEntriesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setFilter(incoming: 'WAITINGPOSTS' | 'CORRECTEDPOSTS') {
+  setFilter(incoming: 'POSTED' | 'CORRECTEDPOSTS') {
     this.filter = incoming;
+  }
+
+  setInnerFilter(incoming: 'WAITING' | 'CORRECTED') {
+    this.innerFilter = incoming;
   }
 }
 

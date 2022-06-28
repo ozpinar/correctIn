@@ -33,6 +33,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     NotificationsComponent,
     ProfileEntriesComponent,
     UserProfileComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

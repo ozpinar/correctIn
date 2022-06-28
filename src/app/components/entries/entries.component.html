@@ -3,16 +3,31 @@
         <button (click)="setFilter('EVERYONE')" [class.bg-opacity-40]="filter != 'EVERYONE'" class="text-white bg-tertiary px-4 py-2 rounded-full">Everyone</button>
         <button (click)="setFilter('FOLLOWING')" [class.bg-opacity-40]="filter != 'FOLLOWING'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Following</button>
     </div>
-    <div *ngFor="let uncheckedPost of uncheckedPosts">
-        <app-entry [id]="uncheckedPost.id" [date]="uncheckedPost.createdAt" [text]="uncheckedPost.postBody" [user]="uncheckedPost.user" *ngIf="stream.getValue(state$) === 'TEACH'"></app-entry>
-    </div>
+    <ng-container *ngIf="stream.getValue(state$) === 'TEACH'">
+        <app-entry 
+            [id]="uncheckedPost.id" 
+            [date]="uncheckedPost.createdAt" 
+            [text]="uncheckedPost.postBody" 
+            [user]="uncheckedPost.user"
+            [language]="uncheckedPost.user.foreignLanguage.languageName"
+            *ngFor="let uncheckedPost of uncheckedPosts">
+        </app-entry>
+        <div *ngIf="uncheckedPosts?.length == 0">
+            <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+        </div>
+    </ng-container>
     <svg *ngIf="isLoading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(255, 255, 255); display: block; shape-rendering: auto;" width="227px" height="227px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <circle cx="50" cy="50" fill="none" stroke="#5c865d" stroke-width="3" r="14" stroke-dasharray="65.97344572538566 23.991148575128552">
           <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
         </circle>
     </svg>
-    <app-corrected-entry *ngIf="stream.getValue(state$) === 'LEARN'"></app-corrected-entry>
-    <div *ngIf="done" class="flex items-center p-4">
+    <ng-container *ngIf="stream.getValue(state$) === 'LEARN'">
+        <app-corrected-entry *ngFor="let checkedPost of checkedPosts" [checkedPost]="checkedPost"></app-corrected-entry>
+        <div *ngIf="checkedPosts?.length == 0">
+            <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+        </div>
+    </ng-container>
+    <div *ngIf="done && stream.getValue(state$) ==='TEACH'" class="flex items-center p-4">
         <div class="flex-1 h-2 bg-secondary bg-opacity-20"></div>
         <span class="px-2 text-primary">You have seen all posts</span>
         <div class="flex-1 h-2 bg-secondary bg-opacity-20"></div>

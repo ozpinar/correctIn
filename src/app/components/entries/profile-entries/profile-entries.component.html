@@ -1,8 +1,30 @@
 <div class="flex flex-col gap-4">
     <div class="flex mb-2 px-2">
-        <button (click)="setFilter('WAITINGPOSTS')" [class.bg-opacity-40]="filter != 'WAITINGPOSTS'" class="text-white bg-tertiary px-4 py-2 rounded-full">Waiting posts</button>
-        <button (click)="setFilter('CORRECTEDPOSTS')" [class.bg-opacity-40]="filter != 'CORRECTEDPOSTS'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Corrected posts</button>
+        <button (click)="setFilter('POSTED')" [class.bg-opacity-40]="filter != 'POSTED'" class="text-white bg-tertiary px-4 py-2 rounded-full">Posted</button>
+        <button (click)="setFilter('CORRECTEDPOSTS')" [class.bg-opacity-40]="filter != 'CORRECTEDPOSTS'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Corrected</button>
     </div>
-    <app-entry *ngIf="filter == 'WAITINGPOSTS'"></app-entry>
-    <app-corrected-entry *ngIf="filter == 'CORRECTEDPOSTS'"></app-corrected-entry>
+    <div *ngIf="filter == 'POSTED'" class="flex -mt-1 mb-2 px-2 text-xs">
+        <button (click)="setInnerFilter('WAITING')" [class.bg-opacity-40]="innerFilter != 'WAITING'" class="text-white bg-primary px-4 py-2 rounded-full">Waiting</button>
+        <button (click)="setInnerFilter('CORRECTED')" [class.bg-opacity-40]="innerFilter != 'CORRECTED'"  class="text-white bg-primary px-4 py-2 rounded-full ml-2">Corrected</button>
+    </div>
+    <ng-container *ngIf="filter == 'POSTED'">
+        <ng-container *ngIf="innerFilter == 'WAITING'" >
+            <app-entry *ngFor="let post of postedPosts" [id]="post.id" [user]="post.user" [text]="post.postBody" [date]="post.createdAt"></app-entry>
+            <div *ngIf="postedPosts?.length == 0">
+                <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="innerFilter == 'CORRECTED'">
+            <app-corrected-entry *ngFor="let correctedPost of correctedPostsOfUser" [checkedPost]="correctedPost"></app-corrected-entry>
+            <div *ngIf="correctedPostsOfUser?.length == 0">
+                <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="filter == 'CORRECTEDPOSTS'">
+        <app-corrected-entry *ngFor="let correctedPost of correctedPosts" [checkedPost]="correctedPost"></app-corrected-entry>
+        <div *ngIf="correctedPosts?.length == 0">
+            <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+        </div>
+    </ng-container>
 </div>

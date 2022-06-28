@@ -1,4 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { FollowService } from 'src/app/services/follow.service';
 
 @Component({
   selector: 'app-notifications',
@@ -7,19 +9,9 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 })
 export class NotificationsComponent implements OnInit {
 
-  notifications = [
-    {type: 'notification', message: 'x corrected your post.'},
-    {type: 'message', message: 'x sent you a message.'},
-    {type: 'message', message: 'x sent you a message.'},
-    {type: 'notification', message: 'x corrected your post.'},
-    {type: 'notification', message: 'x corrected your post.'},
-  ];
-
-  messageNotifications:any = [];
-  correctNotifications:any = [];
+  requests:any;
 
   isOpen = false;
-  state: "NOTIFICATIONS" | "MESSAGES" = "NOTIFICATIONS";
   
   @ViewChild('menu') menu: ElementRef | undefined;
   @HostListener('document:mousedown', ['$event'])
@@ -30,29 +22,31 @@ export class NotificationsComponent implements OnInit {
      }
   }
 
-  constructor() { 
-    this.messageNotifications = this.getMessageNotifications();
-    this.correctNotifications = this.getCorrectNotifications()
-  }
+  constructor(private followService: FollowService, private router: Router) { }
   
   ngOnInit(): void {
-
+    this.getFollowRequests();
   }
 
   togglePopup() {
     this.isOpen = !this.isOpen;
   }
 
-  setState(incomingState: "NOTIFICATIONS" | "MESSAGES") {
-    this.state = incomingState;
+  getFollowRequests() {
+    this.followService.getFollowRequests().subscribe((res: any) => this.requests = res.followerRequests)
   }
 
-  getMessageNotifications() {
-    return this.notifications.filter(messageNotification => messageNotification.type === 'message');
+  acceptRequest(id:number) {
+    this.followService.acceptFollowRequest(id).subscribe(() => {
+      this.requests.filter((request:any) => request.id !== id);
+    })
   }
 
-  getCorrectNotifications() {
-    return this.notifications.filter(notification => notification.type === 'notification');
+  denyRequest(id:Number) {
+
   }
 
+  navigateByUrl(url:string) {
+    this.router.navigateByUrl(url);
+  }
 }

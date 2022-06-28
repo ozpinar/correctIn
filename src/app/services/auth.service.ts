@@ -50,4 +50,12 @@ export class AuthService {
     localStorage.clear();
     this.currentUserSource.next(null);
   }
+
+  updatePassword(values: any) {
+    return this.http.patch(environment.BASE_URL + '/api/auth/change-password', {
+      email: values.email,
+      newPassword: values.newPassword,
+      oldPassword: values.oldPassword
+    });
+  }
 }

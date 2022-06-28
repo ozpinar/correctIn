@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { EntriesComponent } from '../entries/entries.component';
 
@@ -14,12 +15,14 @@ export class MainComponent implements OnInit {
   page = 1;
   totalPages: number;
   done = false;
+  currentUser: any;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, private authService: AuthService) { }
 
 
   ngOnInit(): void {
-    this.postService.getPosts(0).subscribe((res:any) => this.totalPages = res.totalPages);
+    this.authService.currentUser$.subscribe(res => this.currentUser = res);
+    this.postService.getPostsWithLang(0, this.currentUser.nativeLanguage.id).subscribe((res:any) => this.totalPages = res.totalPages);
   }
 
   onScroll() {

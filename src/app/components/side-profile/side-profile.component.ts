@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { FollowService } from 'src/app/services/follow.service';
 
 @Component({
   selector: 'app-side-profile',
@@ -13,7 +14,8 @@ export class SideProfileComponent implements OnInit {
   user: any;
   native: any;
   target: any;
-  constructor(private authService: AuthService) { }
+  isOther = false;
+  constructor(private authService: AuthService, private followService: FollowService) { }
 
   flags: any = {
     'English': "http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
@@ -29,6 +31,7 @@ export class SideProfileComponent implements OnInit {
   ngOnInit(): void {
     if (this.otherUser) {
       this.user = this.otherUser;
+      this.isOther = true;
     } else {
       this.authService.currentUser$.subscribe(user => this.user = user);
     }
@@ -36,4 +39,7 @@ export class SideProfileComponent implements OnInit {
     this.target = this.user.foreignLanguage.languageName;
   }
 
+  sendFollowRequest() {
+    this.followService.sendFollowRequest(this.user.id).subscribe();
+  }
 }

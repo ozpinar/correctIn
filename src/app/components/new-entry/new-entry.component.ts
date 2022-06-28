@@ -10,6 +10,8 @@ import { PostService } from 'src/app/services/post.service';
 export class NewEntryComponent implements OnInit {
 
   entryForm: FormGroup;
+  isLoading = false;
+  message = "";
   constructor(private fb: FormBuilder, private postService: PostService) { }
 
   ngOnInit(): void {
@@ -23,7 +25,14 @@ export class NewEntryComponent implements OnInit {
   }
 
   postEntry() {
-    console.log(this.entryForm.value)
-    this.postService.createPost(this.entryForm.value).subscribe(() => {});
+    this.isLoading = true;
+    this.postService.createPost(this.entryForm.value).subscribe(() => {
+      this.isLoading = false
+      this.message = "Your entry has been sent succesfully."
+      setTimeout(() => {
+        this.message = "";
+      }, 1500);
+    });
+    this.entryForm.reset();
   }
 }
