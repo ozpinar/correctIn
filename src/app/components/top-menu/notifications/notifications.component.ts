@@ -38,12 +38,14 @@ export class NotificationsComponent implements OnInit {
 
   acceptRequest(id:number) {
     this.followService.acceptFollowRequest(id).subscribe(() => {
-      this.requests.filter((request:any) => request.id !== id);
+      this.requests = this.requests.filter((request:any) => request.id !== id);
     })
   }
 
-  denyRequest(id:Number) {
-
+  denyRequest(id:number) {
+    this.followService.withdrawRequest(id).subscribe(() => {
+      this.requests = this.requests.filter((request:any) => request.id !== id);
+    })
   }
 
   navigateByUrl(url:string) {

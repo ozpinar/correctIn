@@ -15,7 +15,7 @@ export class PostService {
   }
   
   getPostsWithLang(page: number, lang: number) {
-    return this.http.get(environment.BASE_URL + `/api/post/all?sortBy=createdAt&size=5&orderBy=desc&page=${page}&foreignLanguageId=${lang}`);
+    return this.http.get(environment.BASE_URL + `/api/post/all?sortBy=createdAt&size=5&orderBy=desc&page=${page}&foreignLanguageId=${lang}&isChecked=false`);
   }
 
   getPostsOfUser(id: number) {

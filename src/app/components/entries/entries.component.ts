@@ -18,6 +18,7 @@ export class EntriesComponent implements OnInit {
   uncheckedPosts : any;
   checkedPosts: any;
   isLoading = true;
+  message = false;
 
   constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService, private postService: PostService, private authService:AuthService) {
     this.state$ = store.select('switch');
@@ -47,5 +48,13 @@ export class EntriesComponent implements OnInit {
       this.checkedPosts = res.checkedPosts;
       this.isLoading = false;
     });
+  }
+
+  removeElement(id: any) {
+    this.uncheckedPosts = this.uncheckedPosts.filter((post:any) => post.id !== id); 
+    this.message = true;
+    setTimeout(() => {
+      this.message = false;
+    }, 1500);
   }
 }

@@ -17,11 +17,18 @@ export class FollowService {
     return this.http.put(environment.BASE_URL + '/api/user/follow/accept/' + id, {});
   }
 
-  withdrawRequest(id:number) {
+  withdrawRequest(id:number, isFollowing?: boolean) {
+    if (isFollowing) {
+      return this.http.put(environment.BASE_URL + '/api/user/follow/withdraw/' + id + '?type=following', {});
+    }
     return this.http.put(environment.BASE_URL + '/api/user/follow/withdraw/' + id, {});
   }
 
   getFollowRequests() {
     return this.http.get(environment.BASE_URL + '/api/user/follow/followers-requests');
+  }
+
+  getFollowInformation(id: number) {
+    return this.http.get(environment.BASE_URL + '/api/user/follow/' + id);
   }
 }

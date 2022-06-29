@@ -4,12 +4,16 @@
         <button (click)="setFilter('FOLLOWING')" [class.bg-opacity-40]="filter != 'FOLLOWING'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Following</button>
     </div>
     <ng-container *ngIf="stream.getValue(state$) === 'TEACH'">
+        <div class="flex justify-between p-2 mb-1 text-tertiary bg-tertiary bg-opacity-10 rounded-lg" *ngIf="message">
+            <p>The entry has been corrected succesfully.</p>
+        </div>        
         <app-entry 
             [id]="uncheckedPost.id" 
             [date]="uncheckedPost.createdAt" 
             [text]="uncheckedPost.postBody" 
             [user]="uncheckedPost.user"
             [language]="uncheckedPost.user.foreignLanguage.languageName"
+            (postCorrected)="removeElement($event)"
             *ngFor="let uncheckedPost of uncheckedPosts">
         </app-entry>
         <div *ngIf="uncheckedPosts?.length == 0">
@@ -29,7 +33,7 @@
     </ng-container>
     <div *ngIf="done && stream.getValue(state$) ==='TEACH'" class="flex items-center p-4">
         <div class="flex-1 h-2 bg-secondary bg-opacity-20"></div>
-        <span class="px-2 text-primary">You have seen all posts</span>
+        <span *ngIf="uncheckedPosts.length" class="px-2 text-primary">You have seen all posts</span>
         <div class="flex-1 h-2 bg-secondary bg-opacity-20"></div>
     </div>
 </div>

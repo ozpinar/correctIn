@@ -15,6 +15,12 @@ export class SideProfileComponent implements OnInit {
   native: any;
   target: any;
   isOther = false;
+  followState: "NOTFOLLOWING" | "FOLLOWING" | "SENT" = "NOTFOLLOWING";
+  followers: any;
+  following: any;
+  followerCount: number;
+  followingCount: number;
+
   constructor(private authService: AuthService, private followService: FollowService) { }
 
   flags: any = {
@@ -37,9 +43,32 @@ export class SideProfileComponent implements OnInit {
     }
     this.native = this.user.nativeLanguage.languageName;
     this.target = this.user.foreignLanguage.languageName;
+    this.getFollowInformation();
+  }
+
+  getFollowInformation() {
+    this.followService.getFollowInformation(this.user.id).subscribe((res: any) => {
+      this.followers = res.followers;
+      this.following = res.follownigs;
+      this.followerCount = res.followersTotalItems;
+      this.followingCount = res.followingsTotalItems;
+    })
   }
 
   sendFollowRequest() {
-    this.followService.sendFollowRequest(this.user.id).subscribe();
+    if (this.followState == "NOTFOLLOWING") {
+      this.followService.sendFollowRequest(this.user.id).subscribe(
+        () => {
+          this.followState = "SENT";
+        }
+      );
+    }
+    else if (this.followState == "SENT") {
+      this.followService.withdrawRequest(this.user.id, true).subscribe(
+        () => {
+          this.followState = "NOTFOLLOWING";
+        }
+      )
+    }
   }
 }

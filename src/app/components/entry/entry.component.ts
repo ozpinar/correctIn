@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 
@@ -13,6 +13,7 @@ export class EntryComponent implements OnInit {
   @Input() user: any;
   @Input() date: any;
   @Input() language: any;
+  @Output() postCorrected: EventEmitter<any> = new EventEmitter();
 
   currentUser: any;
   isDeleting = false;
@@ -34,8 +35,8 @@ export class EntryComponent implements OnInit {
 
   toggleEditing() {
     if (this.isEditing) {
-      this.postService.checkPost(this.id, this.text, this.comment).subscribe(res => {
-        this.postService.deletePost(this.id).subscribe(() => {});
+      this.postService.checkPost(this.id, this.text, this.comment).subscribe(() => {
+        this.postCorrected.emit(this.id);
       });
     }
     this.isEditing = !this.isEditing
