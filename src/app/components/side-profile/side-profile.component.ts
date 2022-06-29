@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FollowService } from 'src/app/services/follow.service';
 
@@ -20,8 +21,10 @@ export class SideProfileComponent implements OnInit {
   following: any;
   followerCount: number;
   followingCount: number;
+  isFollowersShown: boolean;
+  isFollowingsShown: boolean;
 
-  constructor(private authService: AuthService, private followService: FollowService) { }
+  constructor(private authService: AuthService, private followService: FollowService, private router: Router) { }
 
   flags: any = {
     'English': "http://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
@@ -49,7 +52,7 @@ export class SideProfileComponent implements OnInit {
   getFollowInformation() {
     this.followService.getFollowInformation(this.user.id).subscribe((res: any) => {
       this.followers = res.followers;
-      this.following = res.follownigs;
+      this.following = res.followings;
       this.followerCount = res.followersTotalItems;
       this.followingCount = res.followingsTotalItems;
     })
@@ -70,5 +73,22 @@ export class SideProfileComponent implements OnInit {
         }
       )
     }
+  }
+  navigateToUserProfile(id:number) {
+    this.router.navigateByUrl('/profile/'+id);
+  }
+
+  toggleFollowers() {
+    if(this.isFollowingsShown) {
+      this.isFollowingsShown = false;
+    }
+    this.isFollowersShown = !this.isFollowersShown;
+  }
+
+  toggleFollowings() {
+    if(this.isFollowersShown) {
+      this.isFollowersShown = false;
+    }
+    this.isFollowingsShown = !this.isFollowingsShown;
   }
 }

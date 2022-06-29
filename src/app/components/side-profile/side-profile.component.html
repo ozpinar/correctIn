@@ -34,9 +34,23 @@
                 </circle>
             </svg>
         </div>
-        <div class="flex gap-4 mt-6">
-            <span class="text-sm font-light text-tertiary">{{followerCount }} followers</span>
-            <span class="text-sm font-light text-tertiary">{{followingCount }} following</span>
+        <div class="flex gap-4 mt-6 relative">
+            <span (click)="toggleFollowers()"class="text-sm font-light text-tertiary cursor-pointer">{{followerCount }} followers</span>
+            <span (click)="toggleFollowings()" class="text-sm font-light text-tertiary cursor-pointer">{{followingCount }} following</span>
+            <div *ngIf="isFollowersShown" class="absolute w-64 left-1/2 -translate-x-1/2 max-h-64 top-10 overflow-scroll bg-white z-50 shadow-post rounded-lg py-4">
+                <p (click)="navigateToUserProfile(follower.id)" class="flex justify-center gap-2 cursor-pointer text-primary rounded mt-2 first:mt-0 hover:bg-opacity-20 hover:bg-secondary" *ngFor="let follower of followers">
+                    <img src="/assets/profile.svg" width="18px" alt="">
+                    <span>{{follower.firstName}} {{follower.lastName}}</span>
+                </p>
+                <p class="text-center text-tertiary" *ngIf="followers.length == 0">User is not following anyone.</p>
+            </div>
+            <div *ngIf="isFollowingsShown" class="absolute w-64 left-1/2 -translate-x-1/2 max-h-64 top-10 overflow-scroll bg-white z-50 shadow-post rounded-lg py-4">
+                <p (click)="navigateToUserProfile(follow.id)" class="flex justify-center gap-2 cursor-pointer text-primary rounded mt-2 first:mt-0 hover:bg-opacity-20 hover:bg-secondary" *ngFor="let follow of following">
+                    <img src="/assets/profile.svg" width="18px" alt="">
+                    <span>{{follow.firstName}} {{follow.lastName}}</span>
+                </p>
+                <p class="text-center text-tertiary" *ngIf="following.length == 0">User is not following anyone.</p>
+            </div>
         </div>
         <button (click)="sendFollowRequest()" *ngIf="isOther" 
         [ngClass]="followState == 'NOTFOLLOWING' ? 'mt-2 bg-tertiary text-white px-4 py-2 rounded-full' : 'bg-white border border-tertiary mt-2 px-4 py-2 rounded-full text-tertiary'">
