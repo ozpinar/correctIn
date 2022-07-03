@@ -23,6 +23,8 @@ export class SideProfileComponent implements OnInit {
   followingCount: number;
   isFollowersShown: boolean;
   isFollowingsShown: boolean;
+  currentUser: any;
+  userFollowings: any;
 
   constructor(private authService: AuthService, private followService: FollowService, private router: Router) { }
 
@@ -47,6 +49,13 @@ export class SideProfileComponent implements OnInit {
     this.native = this.user.nativeLanguage.languageName;
     this.target = this.user.foreignLanguage.languageName;
     this.getFollowInformation();
+    this.authService.currentUser$.subscribe(res => this.currentUser = res);
+    this.followService.getFollowInformation(this.currentUser.id).subscribe((res:any) => {
+      this.userFollowings = res.followings
+      if (this.userFollowings.some((user:any) => user.id == this.user.id)) {
+        this.followState = "FOLLOWING";
+      } 
+    });    
   }
 
   getFollowInformation() {
@@ -57,6 +66,8 @@ export class SideProfileComponent implements OnInit {
       this.followingCount = res.followingsTotalItems;
     })
   }
+
+
 
   sendFollowRequest() {
     if (this.followState == "NOTFOLLOWING") {

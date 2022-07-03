@@ -3,7 +3,7 @@
         <button (click)="setFilter('EVERYONE')" [class.bg-opacity-40]="filter != 'EVERYONE'" class="text-white bg-tertiary px-4 py-2 rounded-full">Everyone</button>
         <button (click)="setFilter('FOLLOWING')" [class.bg-opacity-40]="filter != 'FOLLOWING'"  class="text-white bg-tertiary px-4 py-2 rounded-full ml-2">Following</button>
     </div>
-    <ng-container *ngIf="stream.getValue(state$) === 'TEACH'">
+    <ng-container *ngIf="stream.getValue(state$) === 'TEACH' && filter == 'EVERYONE'">
         <div class="flex justify-between p-2 mb-1 text-tertiary bg-tertiary bg-opacity-10 rounded-lg" *ngIf="message">
             <p>The entry has been corrected succesfully.</p>
         </div>        
@@ -20,14 +20,37 @@
             <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
         </div>
     </ng-container>
+    <ng-container *ngIf="stream.getValue(state$) === 'TEACH' && filter =='FOLLOWING'">
+        <div class="flex justify-between p-2 mb-1 text-tertiary bg-tertiary bg-opacity-10 rounded-lg" *ngIf="message">
+            <p>The entry has been corrected succesfully.</p>
+        </div>        
+        <app-entry 
+            [id]="followFilteredPost.id" 
+            [date]="followFilteredPost.createdAt" 
+            [text]="followFilteredPost.postBody" 
+            [user]="followFilteredPost.user"
+            [language]="followFilteredPost.user.foreignLanguage.languageName"
+            (postCorrected)="removeElement($event)"
+            *ngFor="let followFilteredPost of followFilteredPosts">
+        </app-entry>
+        <div *ngIf="uncheckedPosts?.length == 0">
+            <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+        </div>
+    </ng-container>
     <svg *ngIf="isLoading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(255, 255, 255); display: block; shape-rendering: auto;" width="227px" height="227px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <circle cx="50" cy="50" fill="none" stroke="#5c865d" stroke-width="3" r="14" stroke-dasharray="65.97344572538566 23.991148575128552">
           <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
         </circle>
     </svg>
-    <ng-container *ngIf="stream.getValue(state$) === 'LEARN'">
+    <ng-container *ngIf="stream.getValue(state$) === 'LEARN' && filter == 'EVERYONE'">
         <app-corrected-entry *ngFor="let checkedPost of checkedPosts" [checkedPost]="checkedPost"></app-corrected-entry>
         <div *ngIf="checkedPosts?.length == 0">
+            <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="stream.getValue(state$) === 'LEARN' && filter == 'FOLLOWING'">
+        <app-corrected-entry *ngFor="let followFilteredCheckedPost of followFilteredCheckedPosts" [checkedPost]="followFilteredCheckedPost"></app-corrected-entry>
+        <div *ngIf="followFilteredCheckedPosts?.length == 0">
             <p class="text-center text-tertiary mt-5">There are no posts to show right now.</p>
         </div>
     </ng-container>

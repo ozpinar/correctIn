@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/services/auth.service';
+import { FollowService } from 'src/app/services/follow.service';
 import { PostService } from 'src/app/services/post.service';
 import { StreamService } from 'src/app/services/stream.service';
 
@@ -19,8 +20,11 @@ export class EntriesComponent implements OnInit {
   checkedPosts: any;
   isLoading = true;
   message = false;
+  followFilteredPosts: any;
+  followFilteredCheckedPosts: any;
+  userFollowings: any;
 
-  constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService, private postService: PostService, private authService:AuthService) {
+  constructor(private store: Store<{switch: 'TEACH' | 'LEARN'}>, public stream: StreamService, private postService: PostService, private authService:AuthService, private followService: FollowService) {
     this.state$ = store.select('switch');
   }
 
@@ -28,10 +32,15 @@ export class EntriesComponent implements OnInit {
     this.authService.currentUser$.subscribe(res => this.currentUser = res);
     this.getUncheckedPosts(0);
     this.getCheckedPosts();
+    this.getUserFollowings();
   }
 
   setFilter(incoming: 'EVERYONE' | 'FOLLOWING') {
     this.filter = incoming;
+    if(incoming == "FOLLOWING") {
+      this.filterPosts();
+      this.filterCheckedPosts();
+    }
   }
 
   getUncheckedPosts(page: number) {
@@ -56,5 +65,21 @@ export class EntriesComponent implements OnInit {
     setTimeout(() => {
       this.message = false;
     }, 1500);
+  }
+
+  filterPosts(){
+    this.followFilteredPosts = this.uncheckedPosts.filter((post: any) => {
+      return this.userFollowings.some((user:any) => user.id == post.user.id);
+    });
+  }
+
+  filterCheckedPosts() {
+    this.followFilteredCheckedPosts = this.checkedPosts.filter((post: any) => {
+      return this.userFollowings.some((user:any) => user.id == post.user.id);
+    });
+  }
+
+  getUserFollowings() {
+    this.followService.getFollowInformation(this.currentUser.id).subscribe((res:any) => this.userFollowings = res.followings);
   }
 }
