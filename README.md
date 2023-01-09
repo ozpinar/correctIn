@@ -1,27 +1,33 @@
 # CorrectIn
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+A language exchange application between language learners and native speakers.
+Live Demo: [correctin.netlify.app](https://correctin.netlify.app)
 
-## Development server
+## Abstract
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+When people are learning a new language, they generally underestimate the
+power of really using that language in their daily life. The books, the language
+schools or any other materials do not give enough opportunity of using the
+language to the learners. As a result of that even though they theoretically
+understand the concepts of that language they can still be weak in producing
+something in that language. Also, even if language learners try to use that
+language they are still very prone to make mistakes while using the language
+they are learning. If they are not corrected by someone, that may lead to
+learning phrases, words, and sentences in the wrong way. In this study a
+language exchange application is proposed. The application that is available
+both in mobile platforms and the web, aims to create a portal for language
+learners and native speakers. The learners are able to post anything that is
+interesting for them, such as a moment in their life, something that is popular
+or anything they want, similar to a social media entry. Those entries will
+be visible to the speakers of that language and they will be able to correct or
+propose better expressions interacting with the post.
 
-## Code scaffolding
+### Correction
+![Correction](https://i.imgur.com/fdsgKKX.jpeg)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Main Page
+![main-page](https://i.imgur.com/X5nDlIz.jpeg)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
